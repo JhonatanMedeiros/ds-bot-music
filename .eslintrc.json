@@ -15,5 +15,9 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "semi": ["error", "always"],
+    "no-console": "off",
+    "no-nested-ternary": "off",
+    "no-useless-return": "off"
   }
 }
