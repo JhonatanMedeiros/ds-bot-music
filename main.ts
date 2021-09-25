@@ -3,6 +3,8 @@ import {
 } from 'discord.js';
 import dotenv from 'dotenv';
 // eslint-disable-next-line import/no-cycle
+import PlayerManager from './src/utils/PlayerManager';
+// eslint-disable-next-line import/no-cycle
 import CommandsManager from './src/utils/CommandsManager';
 import EventsManager from './src/utils/EventsManager';
 import Logger from './src/utils/Logger';
@@ -18,11 +20,14 @@ class Bot extends Client {
 
   events: EventsManager;
 
+  playerManager: PlayerManager;
+
   commands!: CommandsManager;
 
   constructor() {
     super({
       intents: [
+        Intents.FLAGS.GUILD_VOICE_STATES,
         Intents.FLAGS.GUILDS,
         Intents.FLAGS.GUILD_MESSAGES,
         Intents.FLAGS.GUILD_MEMBERS,
@@ -52,6 +57,7 @@ class Bot extends Client {
     this.config = config;
     this.logger = new Logger(`Shard #${this.shard?.ids?.toString() ?? '0'}`);
     this.events = new EventsManager(this);
+    this.playerManager = new PlayerManager(this);
 
     this.launch().then(() => {
       this.commands = new CommandsManager(this);
