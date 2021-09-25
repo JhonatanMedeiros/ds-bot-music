@@ -2,9 +2,12 @@
   "name": "ds-bot-music",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.ts",
   "scripts": {
-    "start": "ts-node src/bot.ts"
+    "start-bot": "ts-node src/bot.ts",
+    "compile": "tsc",
+    "watch": "tsc --watch",
+    "start": "node dist/shards.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +24,7 @@
     "@typescript-eslint/parser": "^4.31.2",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
