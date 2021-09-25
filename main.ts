@@ -2,15 +2,17 @@ import {
   Client, Intents, Options, LimitedCollection,
 } from 'discord.js';
 import dotenv from 'dotenv';
+// eslint-disable-next-line import/no-cycle
 import CommandsManager from './src/utils/CommandsManager';
 import EventsManager from './src/utils/EventsManager';
 import Logger from './src/utils/Logger';
+import { Config } from './src/models/config';
 import * as config from './config.json';
 
 dotenv.config();
 
 class Bot extends Client {
-  config: any;
+  config: Config;
 
   logger: Logger;
 

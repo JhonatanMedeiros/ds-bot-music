@@ -26,7 +26,7 @@ class CommandService {
 
     if (!command) return;
 
-    if (command.ownerOnly && !this.client.config.bot.ownersIDs.includes(interaction.user.id)) {
+    if (command.ownerOnly && !this.client.config.ownersIDs.includes(interaction.user.id)) {
       await interaction.reply('You can\'t use this command, it\'s for my creator.');
       return;
     }
@@ -56,7 +56,7 @@ class CommandService {
       return;
     }
 
-    if (command.disabled && !this.client.config.owners.includes(interaction.user.id)) {
+    if (command.disabled && !this.client.config.ownersIDs.includes(interaction.user.id)) {
       await interaction.reply('Sorry but this command was temporarily disabled.');
       return;
     }

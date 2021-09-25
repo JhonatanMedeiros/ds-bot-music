@@ -22,7 +22,7 @@ class Context {
   }
 
   get shards(): ShardClientUtil {
-    if (!this.client?.shard) throw new Error('Shard non trouvable');
+    if (!this.client?.shard) throw new Error('Shard non trouble');
     return this.client.shard;
   }
 
