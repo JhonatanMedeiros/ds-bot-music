@@ -5,8 +5,8 @@ class Ping extends Command {
   constructor() {
     super({
       name: 'ping',
-      category: 'utils',
-      description: 'Shows bot latency',
+      category: 'Utilidades',
+      description: 'Mostra a latência do bot',
       examples: ['ping', 'help ping'],
     });
   }
@@ -15,10 +15,10 @@ class Ping extends Command {
     await ctx.reply({
       embeds: [
         {
-          title: '⏱️ | Latency',
+          title: '⏱️ | Latência',
           fields: [
             {
-              name: 'Bot Latency',
+              name: 'Latência do bot',
               value: `\`${Math.round(ctx.client.ws.ping)}ms\``,
             },
           ],

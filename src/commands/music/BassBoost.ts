@@ -5,10 +5,10 @@ import { PlayerMetadata } from '../../models/PlayerMetadata';
 class BassBoost extends Command {
   constructor() {
     super({
-      name: 'bassboost',
-      category: 'music',
-      description: 'Toggles bassboost filter',
-      examples: ['bassboost', 'help bassboost'],
+      name: 'grave',
+      category: 'Música',
+      description: 'Alterna filtro de reforço de graves',
+      examples: ['grave', 'help grave'],
     });
   }
 
@@ -19,7 +19,7 @@ class BassBoost extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     await queue.setFilters({
@@ -28,7 +28,7 @@ class BassBoost extends Command {
     });
 
     await interaction.followUp({
-      content: `🎵 | Bassboost ${queue.getFiltersEnabled().includes('bassboost') ? 'Enabled' : 'Disabled'}!`
+      content: `🎵 | Grave ${queue.getFiltersEnabled().includes('bassboost') ? 'Habilitado' : 'Desabilitado'}!`,
     });
   }
 }

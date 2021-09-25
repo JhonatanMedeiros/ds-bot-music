@@ -6,8 +6,8 @@ class Queue extends Command {
   constructor() {
     super({
       name: 'queue',
-      category: 'music',
-      description: 'See the queue',
+      category: 'Música',
+      description: 'Ver a fila atual',
       examples: ['queue', 'help queue'],
     });
   }
@@ -19,7 +19,7 @@ class Queue extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     const currentTrack = queue.current;
@@ -28,16 +28,17 @@ class Queue extends Command {
     await interaction.followUp({
       embeds: [
         {
-          title: 'Server Queue',
+          title: 'Fila do Servidor',
           description: `${tracks.join('\n')}${
             queue.tracks.length > tracks.length
-              ? `\n...${queue.tracks.length - tracks.length === 1 ? `${queue.tracks.length - tracks.length} more track`
-                : `${queue.tracks.length - tracks.length} more tracks`}`
+              ? `\n...${queue.tracks.length - tracks.length === 1
+                ? `${queue.tracks.length - tracks.length} música na fila`
+                : `mais ${queue.tracks.length - tracks.length} músicas na fila`}`
               : ''
           }`,
           color: 0xff0000,
           fields: [{
-            name: 'Now Playing',
+            name: 'Tocando agora',
             value: `🎶 | **${currentTrack.title}** ([link](${currentTrack.url}))`,
           }],
         },

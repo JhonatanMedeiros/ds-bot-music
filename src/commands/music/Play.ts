@@ -8,13 +8,13 @@ class Play extends Command {
   constructor() {
     super({
       name: 'play',
-      category: 'music',
-      description: 'Plays a song from youtube',
+      category: 'Música',
+      description: 'Toque uma música do YouTube ou do Spotify',
       options: [
         {
           name: 'query',
           type: 'STRING',
-          description: 'The song you want to play',
+          description: 'A música que voce quer tocar',
           required: true,
         },
       ],
@@ -38,7 +38,7 @@ class Play extends Command {
       });
 
     if (!searchResult || !searchResult.tracks.length) {
-      await interaction.followUp({ content: 'No results were found!' });
+      await interaction.followUp({ content: 'Nenhum resultado foi encontrado!' });
       return;
     }
 
@@ -52,11 +52,13 @@ class Play extends Command {
       }
     } catch {
       player.deleteQueue<PlayerMetadata>((interaction?.guildId as any));
-      await interaction.followUp({ content: 'Could not join your voice channel!' });
+      await interaction.followUp({ content: 'Não foi possível entrar no seu canal de voz!' });
       return;
     }
 
-    await interaction.followUp({ content: `⏱ | Loading your ${searchResult.playlist ? 'playlist' : 'track'}...` });
+    await interaction.followUp({
+      content: `⏱ | Carregando sua ${searchResult.playlist ? 'playlist' : 'música'}...`,
+    });
 
     if (searchResult.playlist) {
       queue.addTracks(searchResult.tracks);

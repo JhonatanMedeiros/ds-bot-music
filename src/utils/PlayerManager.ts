@@ -29,23 +29,25 @@ class PlayerManager {
     });
 
     this.player.on('trackStart', (queue, track) => {
-      (queue.metadata as any).send(`🎶 | Started playing: **${track.title}** in **${queue.connection.channel.name}**!`);
+      (queue.metadata as any).send(
+        `🎶 | Começou a tocar: **${track.title}** no canal **${queue.connection.channel.name}**!`
+      );
     });
 
     this.player.on('trackAdd', (queue, track) => {
-      (queue.metadata as any).send(`🎶 | Track **${track.title}** queued!`);
+      (queue.metadata as any).send(`🎶 | Música **${track.title}** adiciada a fila!`);
     });
 
     this.player.on('botDisconnect', (queue) => {
-      (queue.metadata as any).send('❌ | I was manually disconnected from the voice channel, clearing queue!');
+      (queue.metadata as any).send('❌ | Fui desconectado manualmente do canal de voz, limpando a fila!');
     });
 
     this.player.on('channelEmpty', (queue) => {
-      (queue.metadata as any).send('❌ | Nobody is in the voice channel, leaving...');
+      (queue.metadata as any).send('❌ | Ninguém está no canal de voz, saindo ...');
     });
 
     this.player.on('queueEnd', (queue) => {
-      (queue.metadata as any).send('✅ | Queue finished!');
+      (queue.metadata as any).send('✅ | Fila terminada!');
     });
   }
 }

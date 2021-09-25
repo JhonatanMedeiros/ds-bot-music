@@ -6,8 +6,8 @@ class Resume extends Command {
   constructor() {
     super({
       name: 'resume',
-      category: 'music',
-      description: 'Resume the current song',
+      category: 'Música',
+      description: 'Retomar a música atual',
       examples: ['resume', 'help resume'],
     });
   }
@@ -19,11 +19,11 @@ class Resume extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     const paused = queue.setPaused(false);
-    await interaction.followUp({ content: !paused ? '❌ | Something went wrong!' : '▶ | Resumed!' });
+    await interaction.followUp({ content: !paused ? '❌ | Algo deu errado!' : '▶ | Retomada!' });
   }
 }
 

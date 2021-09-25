@@ -6,8 +6,8 @@ class Pause extends Command {
   constructor() {
     super({
       name: 'pause',
-      category: 'music',
-      description: 'Pause the current song',
+      category: 'Música',
+      description: 'Pausar a música atual',
       examples: ['pause', 'help pause'],
     });
   }
@@ -19,11 +19,11 @@ class Pause extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     const paused = queue.setPaused(true);
-    await interaction.followUp({ content: paused ? '⏸ | Paused!' : '❌ | Something went wrong!' });
+    await interaction.followUp({ content: paused ? '⏸ | Pausado!' : '❌ | Algo deu errado!' });
   }
 }
 

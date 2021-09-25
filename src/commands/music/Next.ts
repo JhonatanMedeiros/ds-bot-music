@@ -6,8 +6,8 @@ class Next extends Command {
   constructor() {
     super({
       name: 'next',
-      category: 'music',
-      description: 'Next to the current song',
+      category: 'Música',
+      description: 'Próxima música',
       examples: ['next', 'help next'],
     });
   }
@@ -19,13 +19,13 @@ class Next extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     const currentTrack = queue.current;
     const success = queue.skip();
     await interaction.followUp({
-      content: success ? `✅ | Skipped **${currentTrack}**!` : '❌ | Something went wrong!',
+      content: success ? `✅ | Faixa pulada **${currentTrack}**!` : '❌ | Algo deu errado!',
     });
   }
 }

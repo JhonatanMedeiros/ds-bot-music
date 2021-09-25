@@ -6,8 +6,8 @@ class NowPlaying extends Command {
   constructor() {
     super({
       name: 'np',
-      category: 'music',
-      description: 'Now Playing',
+      category: 'Música',
+      description: 'Reproduzindo agora',
       examples: ['np', 'help np'],
     });
   }
@@ -19,7 +19,7 @@ class NowPlaying extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     const progress = queue.createProgressBar();
@@ -28,7 +28,7 @@ class NowPlaying extends Command {
     await interaction.followUp({
       embeds: [
         {
-          title: 'Now Playing',
+          title: 'Reproduzindo agora',
           description: `🎶 | **${queue.current.title}**! (\`${perc.progress}%\`)`,
           fields: [
             {

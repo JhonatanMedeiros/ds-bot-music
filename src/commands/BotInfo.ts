@@ -6,8 +6,8 @@ class Botinfo extends Command {
   constructor() {
     super({
       name: 'botinfo',
-      category: 'utils',
-      description: 'Displays the bot information.',
+      category: 'Utilidades',
+      description: 'Mostra as informações do bot.',
       ownerOnly: true,
       options: [],
       disabled: false,

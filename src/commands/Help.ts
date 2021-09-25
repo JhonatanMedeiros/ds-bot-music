@@ -5,26 +5,26 @@ class Help extends Command {
   constructor() {
     super({
       name: 'help',
-      category: 'utils',
-      description: 'Display all the commands of the bot',
+      category: 'Utilidades',
+      description: 'Mostra todos os comandos do bot',
       disabled: false,
       options: [{
         type: 'STRING',
-        name: 'command',
-        description: 'Get the help of this command',
+        name: 'comando',
+        description: 'Obtenha a ajuda deste comando',
         required: false,
       }],
-      examples: ['help', 'help botinfo'],
+      examples: ['help', 'help botinfo', 'help play'],
     });
   }
 
   async run(ctx: Context) {
-    if (ctx.args.getString('command')) {
+    if (ctx.args.getString('comando')) {
       const command: Command | undefined = ctx?.client?.commands?.findCommand(
-        ctx?.args?.getString('command')?.toLowerCase() as string,
+        ctx?.args?.getString('comando')?.toLowerCase() as string,
       );
       if (!command) {
-        await ctx.reply(`The command \`${ctx.args.getString('command')}\` doesn't exist.`);
+        await ctx.reply(`O comando \`${ctx.args.getString('comando')}\` não existe.`);
         return;
       }
 
@@ -64,7 +64,7 @@ class Help extends Command {
 
     await ctx.reply({
       embeds: [{
-        title: 'Help',
+        title: 'Ajuda',
         thumbnail: {
           url: ctx?.client?.user?.displayAvatarURL({
             size: 512,
@@ -72,7 +72,7 @@ class Help extends Command {
           }),
         },
         // eslint-disable-next-line
-        description: 'Here is the list of my commands.\nExample:\n`/<command> Execute a command.`\n`/help <command> Help of a command.`\n[Bot Structure](https://github.com/warix8/discord.js-bot-structure#readme)\n',
+        description: 'Aqui está a lista de comandos.\nExemplo:\n`/<comando> Executar um comando.`\n`/help <comando> Ajuda do comando.`\n',
         fields: category.map((x) => ({
           name: x,
           value: ctx.client.commands.commands.filter(

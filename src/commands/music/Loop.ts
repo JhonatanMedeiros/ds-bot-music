@@ -7,29 +7,29 @@ class Loop extends Command {
   constructor() {
     super({
       name: 'loop',
-      category: 'music',
-      description: 'Sets loop mode',
+      category: 'Música',
+      description: 'Define o modo de loop',
       options: [
         {
-          name: 'mode',
+          name: 'modo',
           type: 'INTEGER',
-          description: 'Loop type',
+          description: 'Modo de loop',
           required: true,
           choices: [
             {
-              name: 'Off',
+              name: 'Desligado',
               value: QueueRepeatMode.OFF,
             },
             {
-              name: 'Track',
+              name: 'Musica',
               value: QueueRepeatMode.TRACK,
             },
             {
-              name: 'Queue',
+              name: 'Fila',
               value: QueueRepeatMode.QUEUE,
             },
             {
-              name: 'Autoplay',
+              name: 'Reprodução automática',
               value: QueueRepeatMode.AUTOPLAY,
             },
           ],
@@ -46,13 +46,13 @@ class Loop extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
     }
-    const loopMode = (interaction as any).options.get('mode').value;
+    const loopMode = (interaction as any).options.get('modo').value;
     const success = queue.setRepeatMode(loopMode);
     const mode = loopMode === QueueRepeatMode.TRACK ? '🔂' : loopMode === QueueRepeatMode.QUEUE ? '🔁' : '▶';
     await interaction.followUp({
-      content: success ? `${mode} | Updated loop mode!` : '❌ | Could not update loop mode!',
+      content: success ? `${mode} | Modo de loop atualizado!` : '❌ | Não foi possível atualizar o modo de loop!',
     });
   }
 }

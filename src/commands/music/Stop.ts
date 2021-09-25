@@ -6,8 +6,8 @@ class Stop extends Command {
   constructor() {
     super({
       name: 'stop',
-      category: 'music',
-      description: 'Stop the player',
+      category: 'Música',
+      description: 'Parar a Música',
       examples: ['stop', 'help stop'],
     });
   }
@@ -19,11 +19,11 @@ class Stop extends Command {
     const queue = player.getQueue<PlayerMetadata>(interaction?.guildId as any);
 
     if (!queue || !queue.playing) {
-      await interaction.followUp({ content: '❌ | No music is being played!' });
+      await interaction.followUp({ content: '❌ | Nenhuma música está sendo tocada!' });
       return;
     }
     queue.destroy();
-    await interaction.followUp({ content: '🛑 | Stopped the player!' });
+    await interaction.followUp({ content: '🛑 | Parou a música!' });
   }
 }
 
