@@ -10,6 +10,8 @@ class PlayerManager {
     this.client = client;
     this.player = new Player(this.client, {
       ytdlOptions: {
+        // eslint-disable-next-line no-bitwise
+        highWaterMark: 1 << 25,
         // headers: {
         //     cookie: process.env.YT_COOKIE
         // }
@@ -21,6 +23,8 @@ class PlayerManager {
 
   loadPlayer() {
     this.player.on('error', (queue, error) => {
+      console.debug(error.name);
+      console.debug(error.stack);
       this.client.logger.error(`[${queue.guild.name}] Error emitted from the queue: ${error.message}`);
     });
 
@@ -30,7 +34,7 @@ class PlayerManager {
 
     this.player.on('trackStart', (queue, track) => {
       (queue.metadata as any).send(
-        `🎶 | Começou a tocar: **${track.title}** no canal **${queue.connection.channel.name}**!`
+        `🎶 | Começou a tocar: **${track.title}** no canal **${queue.connection.channel.name}**!`,
       );
     });
 

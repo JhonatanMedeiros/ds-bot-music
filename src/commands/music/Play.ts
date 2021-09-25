@@ -67,6 +67,7 @@ class Play extends Command {
     }
 
     if (!queue.playing) {
+      queue.setVolume(20);
       await queue.play();
     }
   }
