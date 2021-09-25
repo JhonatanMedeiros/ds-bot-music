@@ -4,7 +4,6 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
-    "start-bot": "ts-node src/bot.ts",
     "compile": "tsc",
     "watch": "tsc --watch",
     "start": "node dist/shards.js"
