@@ -36,7 +36,7 @@ class Help extends Command {
             {
               name: 'Options',
               value: command.options.length > 0
-                ? command.options.map((x) => `\`${x.required
+                ? command.options.map((x: any) => `\`${x.required
                   ? '(' : '<'}${x.name}:${x.type.toString().toLowerCase()}${x.required ? ')' : '>'}\``).join('\n')
                 : 'No options',
               inline: true,

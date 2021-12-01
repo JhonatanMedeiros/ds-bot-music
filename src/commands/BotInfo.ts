@@ -15,7 +15,7 @@ class Botinfo extends Command {
   }
 
   async run(ctx: Context) {
-    const [guilds, users] = await Promise.all<Collection<any, number>, Collection<any, number>>([
+    const [guilds, users] = await Promise.all([
       // @ts-ignore
       ctx.shards.fetchClientValues('guilds.cache.size'),
       // @ts-ignore
@@ -31,13 +31,13 @@ class Botinfo extends Command {
         fields: [
           {
             name: 'Servidores',
-            value: `\`${guilds.reduce((acc, count) => acc + count, 0)}\``,
+            value: `\`${(guilds as number[]).reduce((acc, count) => acc + count, 0)}\``,
             // value: "`" + guilds.reduce((acc, guild) => acc + count, 0) + "`",
             inline: true,
           },
           {
             name: 'Comercial',
-            value: `\`${users.reduce((acc, count) => acc + count, 0)}\``,
+            value: `\`${(users as number[]).reduce((acc, count) => acc + count, 0)}\``,
             inline: true,
           },
           {

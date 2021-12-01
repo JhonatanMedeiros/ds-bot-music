@@ -1,7 +1,18 @@
 import {
-  CommandInteraction, CommandInteractionOptionResolver, Guild, ShardClientUtil, TextChannel,
-  NewsChannel, ThreadChannel, User, GuildMember, InteractionReplyOptions, MessagePayload,
-  InteractionDeferReplyOptions, WebhookEditMessageOptions, GuildChannel,
+  CommandInteraction,
+  CommandInteractionOptionResolver,
+  Guild,
+  ShardClientUtil,
+  TextChannel,
+  NewsChannel,
+  ThreadChannel,
+  User,
+  GuildMember,
+  InteractionReplyOptions,
+  MessagePayload,
+  InteractionDeferReplyOptions,
+  WebhookEditMessageOptions,
+  GuildChannel,
 } from 'discord.js';
 import Client from '../../main';
 
@@ -10,7 +21,7 @@ class Context {
 
   client: typeof Client;
 
-  args: CommandInteractionOptionResolver;
+  args: Omit<CommandInteractionOptionResolver, 'getMessage' | 'getFocused'>;
 
   lang: string;
 
